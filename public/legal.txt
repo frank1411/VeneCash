@@ -1,0 +1,11 @@
+Titulo: Términos y Condiciones
+Subtitulo: Condiciones de uso de nuestra plataforma
+Contenido: Al utilizar nuestra plataforma, aceptas cumplir con nuestros términos y condiciones. Estos términos establecen las reglas y regulaciones que rigen el uso de nuestros servicios.
+
+Titulo: Política de Privacidad
+Subtitulo: Cómo protegemos tu información
+Contenido: Tu privacidad es importante para nosotros. Esta política describe cómo recopilamos, usamos y protegemos tu información personal cuando utilizas nuestros servicios.
+
+Titulo: Juego Responsable
+Subtitulo: Pautas para apostar de manera responsable
+Contenido: Promovemos el juego responsable. Aprende sobre los límites de depósito, herramientas de autoexclusión y recursos para mantener el control de tus apuestas.

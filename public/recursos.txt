@@ -1,0 +1,11 @@
+Titulo: Guía de Inicio
+Subtitulo: Aprende los conceptos básicos de las apuestas deportivas
+Contenido: Esta guía te ayudará a entender los fundamentos de las apuestas deportivas, desde los tipos de apuestas hasta las estrategias básicas para comenzar.
+
+Titulo: FAQ
+Subtitulo: Preguntas frecuentes sobre nuestra plataforma
+Contenido: Encuentra respuestas a las preguntas más comunes sobre depósitos, retiros, tipos de apuestas y cómo usar nuestra plataforma de manera efectiva.
+
+Titulo: Blog
+Subtitulo: Artículos y análisis sobre apuestas deportivas
+Contenido: Mantente actualizado con las últimas tendencias, análisis detallados de eventos deportivos y consejos de expertos en apuestas deportivas.

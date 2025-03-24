@@ -1,8 +1,84 @@
-import React, { useState } from 'react';
-import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit, X } from 'lucide-react';
 
 function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [predictions, setPredictions] = useState([]);
+  const [concepts, setConcepts] = useState([]);
+  const [resources, setResources] = useState([]);
+  const [legal, setLegal] = useState([]);
+  const [selectedContent, setSelectedContent] = useState(null);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    window.location.href = 'https://bwredir.com/1VBz?s1=VZLA';
+  };
+
+  useEffect(() => {
+    // Load predictions
+    fetch('/pronosticos.txt')
+      .then(response => response.text())
+      .then(text => {
+        const predictions = text.trim().split('\n\n').map(block => {
+          const lines = block.split('\n');
+          return {
+            match: lines[0].replace('Partido: ', ''),
+            prediction: lines[1].replace('Mercado: ', ''),
+            confidence: parseFloat(lines[2].replace('Cuota: ', ''))
+          };
+        });
+        setPredictions(predictions);
+      })
+      .catch(error => console.error('Error loading predictions:', error));
+
+    // Load concepts
+    fetch('/conceptos.txt')
+      .then(response => response.text())
+      .then(text => {
+        const concepts = text.trim().split('\n\n').map(block => {
+          const lines = block.split('\n');
+          return {
+            title: lines[0].replace('Titulo: ', ''),
+            subtitle: lines[1].replace('Subtitulo: ', ''),
+            content: lines[2].replace('Contenido: ', '')
+          };
+        });
+        setConcepts(concepts);
+      })
+      .catch(error => console.error('Error loading concepts:', error));
+
+    // Load resources
+    fetch('/recursos.txt')
+      .then(response => response.text())
+      .then(text => {
+        const resources = text.trim().split('\n\n').map(block => {
+          const lines = block.split('\n');
+          return {
+            title: lines[0].replace('Titulo: ', ''),
+            subtitle: lines[1].replace('Subtitulo: ', ''),
+            content: lines[2].replace('Contenido: ', '')
+          };
+        });
+        setResources(resources);
+      })
+      .catch(error => console.error('Error loading resources:', error));
+
+    // Load legal
+    fetch('/legal.txt')
+      .then(response => response.text())
+      .then(text => {
+        const legal = text.trim().split('\n\n').map(block => {
+          const lines = block.split('\n');
+          return {
+            title: lines[0].replace('Titulo: ', ''),
+            subtitle: lines[1].replace('Subtitulo: ', ''),
+            content: lines[2].replace('Contenido: ', '')
+          };
+        });
+        setLegal(legal);
+      })
+      .catch(error => console.error('Error loading legal:', error));
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#1b4d3e]">
@@ -13,7 +89,7 @@ function App() {
           <div className="flex items-center gap-4">
             <div className="hidden md:flex gap-4">
               <a 
-                href="https://t.me/tucanal" 
+                href="https://t.me/BetWinnerVzla" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-400 flex items-center gap-2"
@@ -22,7 +98,7 @@ function App() {
                 Canal
               </a>
               <a 
-                href="https://t.me/tugrupo" 
+                href="https://t.me/+Qihb06lnKeJkMGMx" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-yellow-400 flex items-center gap-2"
@@ -31,12 +107,14 @@ function App() {
                 Grupo
               </a>
             </div>
-            <button 
-              onClick={() => setShowRegisterModal(true)}
+            <a 
+              href="https://bwredir.com/1VBz?s1=VZLA"
+              target="_blank" 
+              rel="noopener noreferrer"
               className="bg-yellow-400 text-[#1b4d3e] px-4 py-2 rounded-md font-semibold hover:bg-yellow-300"
             >
               Registrarse
-            </button>
+            </a>
           </div>
         </div>
       </nav>
@@ -51,14 +129,16 @@ function App() {
             Únete a la comunidad líder de pronósticos
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => setShowRegisterModal(true)}
+            <a 
+              href="https://bwredir.com/1VBz?s1=VZLA"
+              target="_blank" 
+              rel="noopener noreferrer"
               className="bg-yellow-400 text-[#1b4d3e] px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-300"
             >
               Comenzar Ahora
-            </button>
+            </a>
             <a 
-              href="https://t.me/tuasesor" 
+              href="https://t.me/franketero" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-green-600 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-green-500 flex items-center justify-center gap-2"
@@ -97,12 +177,14 @@ function App() {
                   Comunidad exclusiva
                 </li>
               </ul>
-              <button 
-                onClick={() => setShowRegisterModal(true)}
-                className="w-full bg-yellow-400 text-[#1b4d3e] py-3 rounded-md font-bold hover:bg-yellow-300"
+              <a 
+                href="https://bwredir.com/1VBz?s1=VZLA"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block w-full bg-yellow-400 text-[#1b4d3e] py-3 rounded-md font-bold hover:bg-yellow-300 text-center"
               >
                 Crear Cuenta
-              </button>
+              </a>
             </div>
 
             <div className="bg-[#2c6152] p-6 rounded-lg">
@@ -133,21 +215,14 @@ function App() {
                 <h2 className="text-2xl text-white font-bold">Últimos Pronósticos</h2>
               </div>
               <div className="space-y-4">
-                <Prediction 
-                  match="Real Madrid vs Barcelona"
-                  prediction="Over 2.5 goles"
-                  confidence={85}
-                />
-                <Prediction 
-                  match="Manchester City vs Liverpool"
-                  prediction="Victoria local"
-                  confidence={90}
-                />
-                <Prediction 
-                  match="PSG vs Bayern Munich"
-                  prediction="Ambos marcan"
-                  confidence={75}
-                />
+                {predictions.map((pred, index) => (
+                  <Prediction 
+                    key={index}
+                    match={pred.match}
+                    prediction={pred.prediction}
+                    confidence={pred.confidence}
+                  />
+                ))}
               </div>
             </div>
 
@@ -157,18 +232,14 @@ function App() {
                 <h2 className="text-2xl text-white font-bold">Conceptos Clave</h2>
               </div>
               <div className="space-y-4">
-                <Concept 
-                  title="Valor en Apuestas"
-                  description="Aprende a identificar apuestas con valor positivo"
-                />
-                <Concept 
-                  title="Gestión de Banca"
-                  description="Estrategias para manejar tu capital de manera efectiva"
-                />
-                <Concept 
-                  title="Análisis Estadístico"
-                  description="Uso de datos para tomar mejores decisiones"
-                />
+                {concepts.map((concept, index) => (
+                  <Concept 
+                    key={index}
+                    title={concept.title}
+                    description={concept.subtitle}
+                    onClick={() => setSelectedContent(concept)}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -183,7 +254,7 @@ function App() {
               <h3 className="text-white font-bold text-lg mb-4">Comunidad</h3>
               <div className="space-y-2">
                 <a 
-                  href="https://t.me/tucanal" 
+                  href="https://t.me/BetWinnerVzla" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-yellow-400"
@@ -192,7 +263,7 @@ function App() {
                   Canal de Telegram
                 </a>
                 <a 
-                  href="https://t.me/tugrupo" 
+                  href="https://t.me/+Qihb06lnKeJkMGMx" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-yellow-400"
@@ -201,7 +272,7 @@ function App() {
                   Grupo de Telegram
                 </a>
                 <a 
-                  href="https://t.me/tuasesor" 
+                  href="https://t.me/franketero" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-yellow-400"
@@ -214,17 +285,29 @@ function App() {
             <div>
               <h3 className="text-white font-bold text-lg mb-4">Recursos</h3>
               <div className="space-y-2">
-                <a href="#" className="block hover:text-yellow-400">Guía de Inicio</a>
-                <a href="#" className="block hover:text-yellow-400">FAQ</a>
-                <a href="#" className="block hover:text-yellow-400">Blog</a>
+                {resources.map((resource, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedContent(resource)}
+                    className="block text-gray-300 hover:text-yellow-400 w-full text-left"
+                  >
+                    {resource.title}
+                  </button>
+                ))}
               </div>
             </div>
             <div>
               <h3 className="text-white font-bold text-lg mb-4">Legal</h3>
               <div className="space-y-2">
-                <a href="#" className="block hover:text-yellow-400">Términos y Condiciones</a>
-                <a href="#" className="block hover:text-yellow-400">Política de Privacidad</a>
-                <a href="#" className="block hover:text-yellow-400">Juego Responsable</a>
+                {legal.map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedContent(item)}
+                    className="block text-gray-300 hover:text-yellow-400 w-full text-left"
+                  >
+                    {item.title}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -239,7 +322,7 @@ function App() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-[#2c6152] p-6 rounded-lg w-full max-w-md">
             <h2 className="text-2xl text-white font-bold mb-4">Crear Cuenta</h2>
-            <form className="space-y-4">
+            <form onSubmit={handleRegister} className="space-y-4">
               <div>
                 <label className="block text-gray-300 mb-2">Nombre</label>
                 <input 
@@ -280,6 +363,23 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Content Modal */}
+      {selectedContent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-[#2c6152] p-6 rounded-lg w-full max-w-md relative">
+            <button 
+              onClick={() => setSelectedContent(null)}
+              className="absolute top-4 right-4 text-gray-300 hover:text-white"
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <h2 className="text-2xl text-white font-bold mb-2">{selectedContent.title}</h2>
+            <p className="text-gray-300 mb-4">{selectedContent.subtitle}</p>
+            <p className="text-white">{selectedContent.content}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -305,16 +405,19 @@ function Prediction({ match, prediction, confidence }) {
       <div className="flex justify-between items-center mt-2">
         <p className="text-gray-300">{prediction}</p>
         <span className="bg-green-600 text-white px-2 py-1 rounded-full text-sm">
-          {confidence}%
+          {confidence.toFixed(2)}
         </span>
       </div>
     </div>
   );
 }
 
-function Concept({ title, description }) {
+function Concept({ title, description, onClick }) {
   return (
-    <div className="bg-[#1b4d3e] p-4 rounded-lg">
+    <div 
+      className="bg-[#1b4d3e] p-4 rounded-lg cursor-pointer hover:bg-[#164534] transition-colors duration-200"
+      onClick={onClick}
+    >
       <h3 className="text-white font-semibold mb-2">{title}</h3>
       <p className="text-gray-300 text-sm">{description}</p>
     </div>

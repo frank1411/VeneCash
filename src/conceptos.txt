@@ -1,0 +1,11 @@
+Titulo: Valor en Apuestas
+Subtitulo: Aprende a identificar apuestas con valor positivo
+Contenido: Las apuestas con valor son aquellas donde las probabilidades ofrecidas son mayores que las probabilidades reales.
+
+Titulo: Gestión de Banca
+Subtitulo: Estrategias para manejar tu capital de manera efectiva
+Contenido: Una gestión de banca adecuada es fundamental para el éxito a largo plazo en las apuestas deportivas.
+
+Titulo: Análisis Estadístico
+Subtitulo: Uso de datos para tomar mejores decisiones
+Contenido: El análisis de datos históricos y estadísticas es clave para hacer predicciones más precisas.
