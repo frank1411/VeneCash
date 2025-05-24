@@ -246,7 +246,7 @@ function App() {
                 <h2 className="text-2xl text-white font-bold">Juega en $ con Bs en 3 Simples Pasos</h2>
               </div>
               <p className="text-gray-300 mb-4">
-                Sigue estos pasos para usar VeneCash y obtener acceso a:":
+                Sigue estos pasos para usar VeneCash y obtener acceso a:
               </p>
               <ul className="text-gray-300 space-y-2 mb-6">
                 <li className="flex items-center gap-2">
