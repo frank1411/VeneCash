@@ -226,7 +226,7 @@ function App() {
             <div className="bg-[#2c6152] p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-4">
                 <Trophy className="text-yellow-400 w-6 h-6" />
-                <h2 className="text-2xl text-white font-bold">Registro</h2>
+                <h2 className="text-2xl text-white font-bold">Juega en $ con Bs en 3 Simples Pasos</h2>
               </div>
               <p className="text-gray-300 mb-4">
                 Únete a nuestra plataforma y obtén acceso a:
