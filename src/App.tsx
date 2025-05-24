@@ -48,7 +48,7 @@ function App() {
   }, []);
 
   const handleCopyCode = (e, code) => {
-    e.preventDefault(); // Prevent the link click when copying code
+    e.preventDefault();
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
     setTimeout(() => setCopiedCode(''), 2000);
@@ -248,18 +248,45 @@ function App() {
               <p className="text-gray-300 mb-4">
                 Sigue estos pasos para usar VeneCash y obtener acceso a:
               </p>
-              <ul className="text-gray-300 space-y-2 mb-6">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Elige tu Casa y Usa Nuestro Código.
+              <ul className="text-gray-300 space-y-4 mb-6">
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                  <div>
+                    <span>Elige tu Casa y Usa Nuestro Código.</span>
+                  </div>
                 </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Deposita en Bolívares, Juega en Dólares (Contáctanos por Telegram para procesar tu depósito)
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                  <div>
+                    <span>Deposita en Bolívares, Juega en Dólares</span>
+                    <span className="block text-sm text-gray-400">Contáctanos por Telegram para procesar tu depósito</span>
+                  </div>
                 </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Disfruta de Beneficios Adicionales (Únete a nuestro Canal y Grupo de Telegram).
+                <li className="flex items-start gap-2">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                  <div>
+                    <span>Disfruta de Beneficios Adicionales</span>
+                    <div className="flex gap-2 mt-2">
+                      <a 
+                        href="https://t.me/BetWinnerVzla" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-yellow-400 hover:text-yellow-300 flex items-center gap-1 text-sm"
+                      >
+                        <Send className="w-4 h-4" />
+                        Canal
+                      </a>
+                      <a 
+                        href="https://t.me/+Qihb06lnKeJkMGMx" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-yellow-400 hover:text-yellow-300 flex items-center gap-1 text-sm"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                        Grupo
+                      </a>
+                    </div>
+                  </div>
                 </li>
               </ul>
               <div className="relative register-dropdown">
@@ -277,7 +304,10 @@ function App() {
             <div className="bg-[#2c6152] p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-4">
                 <Wallet className="text-yellow-400 w-6 h-6" />
-                <h2 className="text-2xl text-white font-bold">Depósitos (contáctanos por Telegram y te guiaremos para usar estos métodos.)</h2>
+                <div>
+                  <h2 className="text-2xl text-white font-bold">Depósitos</h2>
+                  <p className="text-sm text-gray-400">contáctanos por Telegram y te guiaremos para usar estos métodos.</p>
+                </div>
               </div>
               <div className="grid gap-4">
                 <PaymentMethod 
@@ -299,7 +329,10 @@ function App() {
             <div className="bg-[#2c6152] p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-4">
                 <BookOpen className="text-yellow-400 w-6 h-6" />
-                <h2 className="text-2xl text-white font-bold">Últimos Pronósticos (Obtén más pronósticos como estos en nuestro Grupo VIP)</h2>
+                <div>
+                  <h2 className="text-2xl text-white font-bold">Últimos Pronósticos</h2>
+                  <p className="text-sm text-gray-400">Obtén más pronósticos como estos en nuestro Grupo VIP</p>
+                </div>
               </div>
               <div className="space-y-4">
                 {predictions.map((pred, index) => (
@@ -403,53 +436,6 @@ function App() {
           </div>
         </div>
       </footer>
-
-      {/* Register Modal */}
-      {showRegisterModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-[#2c6152] p-6 rounded-lg w-full max-w-md">
-            <h2 className="text-2xl text-white font-bold mb-4">Crear Cuenta</h2>
-            <form onSubmit={handleRegister} className="space-y-4">
-              <div>
-                <label className="block text-gray-300 mb-2">Nombre</label>
-                <input 
-                  type="text" 
-                  className="w-full p-2 rounded bg-[#1b4d3e] text-white border border-green-600"
-                  placeholder="Tu nombre"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-2">Email</label>
-                <input 
-                  type="email" 
-                  className="w-full p-2 rounded bg-[#1b4d3e] text-white border border-green-600"
-                  placeholder="tu@email.com"
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 mb-2">Contraseña</label>
-                <input 
-                  type="password" 
-                  className="w-full p-2 rounded bg-[#1b4d3e] text-white border border-green-600"
-                  placeholder="********"
-                />
-              </div>
-              <button 
-                type="submit"
-                className="w-full bg-yellow-400 text-[#1b4d3e] py-3 rounded-md font-bold hover:bg-yellow-300"
-              >
-                Registrarse
-              </button>
-            </form>
-            <button 
-              onClick={() => setShowRegisterModal(false)}
-              className="mt-4 text-gray-300 hover:text-white w-full"
-            >
-              Cerrar
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Content Modal */}
       {selectedContent && (
