@@ -234,15 +234,15 @@ function App() {
               <ul className="text-gray-300 space-y-2 mb-6">
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Pronósticos premium
+                  Elige tu Casa y Usa Nuestro Código.
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Asesoría personalizada
+                  Deposita en Bolívares, Juega en Dólares
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Comunidad exclusiva
+                  Disfruta de Beneficios Adicionales (Opcional).
                 </li>
               </ul>
               <div className="relative register-dropdown">
