@@ -4,6 +4,8 @@ import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, 
 function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showRegisterDropdown, setShowRegisterDropdown] = useState(false);
+  const [showHeroDropdown, setShowHeroDropdown] = useState(false);
+  const [showCreateAccountDropdown, setShowCreateAccountDropdown] = useState(false);
   const [predictions, setPredictions] = useState([]);
   const [concepts, setConcepts] = useState([]);
   const [resources, setResources] = useState([]);
@@ -30,14 +32,16 @@ function App() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (showRegisterDropdown && !event.target.closest('.register-dropdown')) {
+      if (!event.target.closest('.register-dropdown')) {
         setShowRegisterDropdown(false);
+        setShowHeroDropdown(false);
+        setShowCreateAccountDropdown(false);
       }
     };
 
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [showRegisterDropdown]);
+  }, []);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -110,6 +114,36 @@ function App() {
       .catch(error => console.error('Error loading legal:', error));
   }, []);
 
+  const BookmakerDropdown = ({ show, items }) => (
+    show && (
+      <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl overflow-hidden z-50">
+        {items.map((bookmaker, index) => (
+          <a
+            key={index}
+            href={bookmaker.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block hover:bg-gray-50 transition-colors duration-200"
+          >
+            <div className="flex items-center p-4">
+              <div className="w-16 h-16 rounded-lg overflow-hidden mr-4">
+                <img 
+                  src={bookmaker.image} 
+                  alt={bookmaker.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h3 className="text-gray-900 font-semibold">{bookmaker.name}</h3>
+                <p className="text-sm text-gray-500">Click para registrarte</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )
+  );
+
   return (
     <div className="min-h-screen bg-[#1b4d3e]">
       {/* Navbar */}
@@ -145,33 +179,7 @@ function App() {
                 Registrarse
                 <ChevronDown className="w-4 h-4" />
               </button>
-              {showRegisterDropdown && (
-                <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl overflow-hidden">
-                  {bookmakers.map((bookmaker, index) => (
-                    <a
-                      key={index}
-                      href={bookmaker.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block hover:bg-gray-50 transition-colors duration-200"
-                    >
-                      <div className="flex items-center p-4">
-                        <div className="w-16 h-16 rounded-lg overflow-hidden mr-4">
-                          <img 
-                            src={bookmaker.image} 
-                            alt={bookmaker.name}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div>
-                          <h3 className="text-gray-900 font-semibold">{bookmaker.name}</h3>
-                          <p className="text-sm text-gray-500">Click para registrarte</p>
-                        </div>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              )}
+              <BookmakerDropdown show={showRegisterDropdown} items={bookmakers} />
             </div>
           </div>
         </div>
@@ -187,14 +195,16 @@ function App() {
             Únete a la comunidad líder de pronósticos
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <a 
-              href="https://bwredir.com/1VBz?s1=VZLA"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-yellow-400 text-[#1b4d3e] px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-300"
-            >
-              Comenzar Ahora
-            </a>
+            <div className="relative register-dropdown">
+              <button 
+                onClick={() => setShowHeroDropdown(!showHeroDropdown)}
+                className="bg-yellow-400 text-[#1b4d3e] px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-300 flex items-center gap-2 w-full justify-center"
+              >
+                Comenzar Ahora
+                <ChevronDown className="w-5 h-5" />
+              </button>
+              <BookmakerDropdown show={showHeroDropdown} items={bookmakers} />
+            </div>
             <a 
               href="https://t.me/franketero" 
               target="_blank" 
@@ -235,14 +245,16 @@ function App() {
                   Comunidad exclusiva
                 </li>
               </ul>
-              <a 
-                href="https://bwredir.com/1VBz?s1=VZLA"
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block w-full bg-yellow-400 text-[#1b4d3e] py-3 rounded-md font-bold hover:bg-yellow-300 text-center"
-              >
-                Crear Cuenta
-              </a>
+              <div className="relative register-dropdown">
+                <button 
+                  onClick={() => setShowCreateAccountDropdown(!showCreateAccountDropdown)}
+                  className="block w-full bg-yellow-400 text-[#1b4d3e] py-3 rounded-md font-bold hover:bg-yellow-300 text-center flex items-center justify-center gap-2"
+                >
+                  Crear Cuenta
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <BookmakerDropdown show={showCreateAccountDropdown} items={bookmakers} />
+              </div>
             </div>
 
             <div className="bg-[#2c6152] p-6 rounded-lg">
