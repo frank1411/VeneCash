@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit, X, ChevronDown } from 'lucide-react';
+import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit, X, ChevronDown, Link, Copy, Check } from 'lucide-react';
 
 function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showRegisterDropdown, setShowRegisterDropdown] = useState(false);
   const [showHeroDropdown, setShowHeroDropdown] = useState(false);
   const [showCreateAccountDropdown, setShowCreateAccountDropdown] = useState(false);
+  const [copiedCode, setCopiedCode] = useState('');
   const [predictions, setPredictions] = useState([]);
   const [concepts, setConcepts] = useState([]);
   const [resources, setResources] = useState([]);
@@ -16,17 +17,20 @@ function App() {
     {
       name: 'BetWinner',
       url: 'https://bwredir.com/1VBz?s1=VZLA',
-      image: 'https://images.pexels.com/photos/1871508/pexels-photo-1871508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      logo: '/imagenes/bw.svg',
+      code: 'VZLA'
     },
     {
       name: '1xBet',
       url: 'https://1xbet.com/',
-      image: 'https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      logo: '/imagenes/1x.svg',
+      code: 'VZLA'
     },
     {
       name: 'Melbet',
       url: 'https://melbet.com.ve/es',
-      image: 'https://images.pexels.com/photos/1277181/pexels-photo-1277181.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      logo: '/imagenes/MB.svg',
+      code: 'VZLA14'
     }
   ];
 
@@ -42,6 +46,12 @@ function App() {
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
+
+  const handleCopyCode = (code) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCode(code);
+    setTimeout(() => setCopiedCode(''), 2000);
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -116,29 +126,46 @@ function App() {
 
   const BookmakerDropdown = ({ show, items }) => (
     show && (
-      <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl overflow-hidden z-50">
+      <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl overflow-hidden z-50">
         {items.map((bookmaker, index) => (
-          <a
-            key={index}
-            href={bookmaker.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block hover:bg-gray-50 transition-colors duration-200"
-          >
-            <div className="flex items-center p-4">
-              <div className="w-16 h-16 rounded-lg overflow-hidden mr-4">
+          <div key={index} className="p-4 hover:bg-gray-50 transition-colors duration-200">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 flex items-center justify-center">
                 <img 
-                  src={bookmaker.image} 
+                  src={bookmaker.logo} 
                   alt={bookmaker.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto"
                 />
               </div>
-              <div>
-                <h3 className="text-gray-900 font-semibold">{bookmaker.name}</h3>
-                <p className="text-sm text-gray-500">Click para registrarte</p>
+              <div className="flex-1">
+                <h3 className="text-gray-900 font-semibold flex items-center gap-2">
+                  {bookmaker.name}
+                  <a 
+                    href={bookmaker.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-600"
+                  >
+                    <Link className="w-4 h-4" />
+                  </a>
+                </h3>
+                <div className="flex items-center gap-2 mt-2">
+                  <span className="text-sm text-gray-600">Código: {bookmaker.code}</span>
+                  <button
+                    onClick={() => handleCopyCode(bookmaker.code)}
+                    className="text-blue-500 hover:text-blue-600"
+                    title="Copiar código"
+                  >
+                    {copiedCode === bookmaker.code ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     )
@@ -170,16 +197,6 @@ function App() {
                 <MessageCircle className="w-4 h-4" />
                 Grupo
               </a>
-            </div>
-            <div className="relative register-dropdown">
-              <button 
-                onClick={() => setShowRegisterDropdown(!showRegisterDropdown)}
-                className="bg-yellow-400 text-[#1b4d3e] px-4 py-2 rounded-md font-semibold hover:bg-yellow-300 flex items-center gap-2"
-              >
-                Registrarse
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              <BookmakerDropdown show={showRegisterDropdown} items={bookmakers} />
             </div>
           </div>
         </div>
