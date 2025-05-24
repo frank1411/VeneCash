@@ -299,7 +299,7 @@ function App() {
             <div className="bg-[#2c6152] p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-4">
                 <BookOpen className="text-yellow-400 w-6 h-6" />
-                <h2 className="text-2xl text-white font-bold">Últimos Pronósticos</h2>
+                <h2 className="text-2xl text-white font-bold">Últimos Pronósticos (Obtén más pronósticos como estos en nuestro Grupo VIP)</h2>
               </div>
               <div className="space-y-4">
                 {predictions.map((pred, index) => (
