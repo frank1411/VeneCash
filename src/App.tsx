@@ -246,7 +246,7 @@ function App() {
                 <h2 className="text-2xl text-white font-bold">Juega en $ con Bs en 3 Simples Pasos</h2>
               </div>
               <p className="text-gray-300 mb-4">
-                Únete a nuestra plataforma y obtén acceso a:
+                Sigue estos pasos para usar VeneCash y obtener acceso a:":
               </p>
               <ul className="text-gray-300 space-y-2 mb-6">
                 <li className="flex items-center gap-2">
@@ -255,11 +255,11 @@ function App() {
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Deposita en Bolívares, Juega en Dólares
+                  Deposita en Bolívares, Juega en Dólares (Contáctanos por Telegram para procesar tu depósito)
                 </li>
                 <li className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  Disfruta de Beneficios Adicionales (Opcional).
+                  Disfruta de Beneficios Adicionales (Únete a nuestro Canal y Grupo de Telegram).
                 </li>
               </ul>
               <div className="relative register-dropdown">
@@ -277,7 +277,7 @@ function App() {
             <div className="bg-[#2c6152] p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-4">
                 <Wallet className="text-yellow-400 w-6 h-6" />
-                <h2 className="text-2xl text-white font-bold">Depósitos</h2>
+                <h2 className="text-2xl text-white font-bold">Depósitos (contáctanos por Telegram y te guiaremos para usar estos métodos.)</h2>
               </div>
               <div className="grid gap-4">
                 <PaymentMethod 
