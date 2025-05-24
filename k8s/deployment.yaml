@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: venecash-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: venecash-app
+  template:
+    metadata:
+      labels:
+        app: venecash-app
+    spec:
+      containers:
+      - name: venecash-app
+        image: venecash-app:latest
+        imagePullPolicy: Never  # Importante para usar imagen local
+        ports:
+        - containerPort: 4174
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
