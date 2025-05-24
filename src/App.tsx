@@ -47,7 +47,8 @@ function App() {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
-  const handleCopyCode = (code) => {
+  const handleCopyCode = (e, code) => {
+    e.preventDefault(); // Prevent the link click when copying code
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
     setTimeout(() => setCopiedCode(''), 2000);
@@ -128,7 +129,13 @@ function App() {
     show && (
       <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl overflow-hidden z-50">
         {items.map((bookmaker, index) => (
-          <div key={index} className="p-4 hover:bg-gray-50 transition-colors duration-200">
+          <a
+            key={index}
+            href={bookmaker.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block p-4 hover:bg-gray-50 transition-colors duration-200"
+          >
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 flex items-center justify-center">
                 <img 
@@ -140,19 +147,12 @@ function App() {
               <div className="flex-1">
                 <h3 className="text-gray-900 font-semibold flex items-center gap-2">
                   {bookmaker.name}
-                  <a 
-                    href={bookmaker.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:text-blue-600"
-                  >
-                    <Link className="w-4 h-4" />
-                  </a>
+                  <Link className="w-4 h-4 text-blue-500" />
                 </h3>
                 <div className="flex items-center gap-2 mt-2">
                   <span className="text-sm text-gray-600">Código: {bookmaker.code}</span>
                   <button
-                    onClick={() => handleCopyCode(bookmaker.code)}
+                    onClick={(e) => handleCopyCode(e, bookmaker.code)}
                     className="text-blue-500 hover:text-blue-600"
                     title="Copiar código"
                   >
@@ -165,7 +165,7 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     )
