@@ -1,13 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit, X } from 'lucide-react';
+import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit, X, ChevronDown } from 'lucide-react';
 
 function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showRegisterDropdown, setShowRegisterDropdown] = useState(false);
   const [predictions, setPredictions] = useState([]);
   const [concepts, setConcepts] = useState([]);
   const [resources, setResources] = useState([]);
   const [legal, setLegal] = useState([]);
   const [selectedContent, setSelectedContent] = useState(null);
+
+  const bookmakers = [
+    {
+      name: 'BetWinner',
+      url: 'https://bwredir.com/1VBz?s1=VZLA',
+      image: 'https://images.pexels.com/photos/1871508/pexels-photo-1871508.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    },
+    {
+      name: '1xBet',
+      url: 'https://1xbet.com/',
+      image: 'https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    },
+    {
+      name: 'Melbet',
+      url: 'https://melbet.com.ve/es',
+      image: 'https://images.pexels.com/photos/1277181/pexels-photo-1277181.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    }
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showRegisterDropdown && !event.target.closest('.register-dropdown')) {
+        setShowRegisterDropdown(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showRegisterDropdown]);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -107,14 +137,42 @@ function App() {
                 Grupo
               </a>
             </div>
-            <a 
-              href="https://bwredir.com/1VBz?s1=VZLA"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="bg-yellow-400 text-[#1b4d3e] px-4 py-2 rounded-md font-semibold hover:bg-yellow-300"
-            >
-              Registrarse
-            </a>
+            <div className="relative register-dropdown">
+              <button 
+                onClick={() => setShowRegisterDropdown(!showRegisterDropdown)}
+                className="bg-yellow-400 text-[#1b4d3e] px-4 py-2 rounded-md font-semibold hover:bg-yellow-300 flex items-center gap-2"
+              >
+                Registrarse
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              {showRegisterDropdown && (
+                <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl overflow-hidden">
+                  {bookmakers.map((bookmaker, index) => (
+                    <a
+                      key={index}
+                      href={bookmaker.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block hover:bg-gray-50 transition-colors duration-200"
+                    >
+                      <div className="flex items-center p-4">
+                        <div className="w-16 h-16 rounded-lg overflow-hidden mr-4">
+                          <img 
+                            src={bookmaker.image} 
+                            alt={bookmaker.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div>
+                          <h3 className="text-gray-900 font-semibold">{bookmaker.name}</h3>
+                          <p className="text-sm text-gray-500">Click para registrarte</p>
+                        </div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>
