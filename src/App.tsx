@@ -200,7 +200,7 @@ function App() {
                 onClick={() => setShowHeroDropdown(!showHeroDropdown)}
                 className="bg-yellow-400 text-[#1b4d3e] px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-300 flex items-center gap-2 w-full justify-center"
               >
-                Elegir mi Casa de Apuestas
+                Elegir Casa y Usar Nuestro Código
                 <ChevronDown className="w-5 h-5" />
               </button>
               <BookmakerDropdown show={showHeroDropdown} items={bookmakers} />
