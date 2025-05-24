@@ -192,7 +192,7 @@ function App() {
             Transforma tus Bolívares en Apuestas Ganadoras en Dólares
           </h1>
           <p className="text-gray-300 text-xl mb-8">
-            Te guiamos paso a paso para que apuestes en $ usando tus Bs.
+            Somos tu puente para depositar en Bolívares y jugar en Dólares en las mejores casas. ¡Regístrate con nuestro código y accede a beneficios exclusivos!
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <div className="relative register-dropdown">
