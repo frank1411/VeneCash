@@ -189,10 +189,10 @@ function App() {
       <div className="bg-[#164534] py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Tu Camino al Éxito en las Apuestas Deportivas
+            Transforma tus Bolívares en Apuestas Ganadoras en Dólares
           </h1>
           <p className="text-gray-300 text-xl mb-8">
-            Únete a la comunidad líder de pronósticos
+            Te guiamos paso a paso para que apuestes en $ usando tus Bs.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center">
             <div className="relative register-dropdown">
@@ -200,7 +200,7 @@ function App() {
                 onClick={() => setShowHeroDropdown(!showHeroDropdown)}
                 className="bg-yellow-400 text-[#1b4d3e] px-8 py-3 rounded-lg font-bold text-lg hover:bg-yellow-300 flex items-center gap-2 w-full justify-center"
               >
-                Comenzar Ahora
+                Elegir mi Casa de Apuestas
                 <ChevronDown className="w-5 h-5" />
               </button>
               <BookmakerDropdown show={showHeroDropdown} items={bookmakers} />
