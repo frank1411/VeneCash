@@ -229,7 +229,7 @@ function App() {
               className="bg-green-600 text-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-green-500 flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />
-              Asesoría Personalizada
+              Asesoría Personal
             </a>
           </div>
         </div>
@@ -259,7 +259,17 @@ function App() {
                   <div className="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
                   <div>
                     <span>Deposita en Bolívares, Juega en Dólares</span>
-                    <span className="block text-sm text-gray-400">Contáctanos por Telegram para procesar tu depósito</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm text-gray-400">Contáctanos por Telegram y te guiaremos para usar estos métodos</span>
+                      <a 
+                        href="https://t.me/franketero" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-yellow-400 hover:text-yellow-300"
+                      >
+                        <Send className="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
@@ -306,7 +316,17 @@ function App() {
                 <Wallet className="text-yellow-400 w-6 h-6" />
                 <div>
                   <h2 className="text-2xl text-white font-bold">Depósitos</h2>
-                  <p className="text-sm text-gray-400">contáctanos por Telegram y te guiaremos para usar estos métodos.</p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-400">Contáctanos por Telegram y te guiaremos para usar estos métodos</span>
+                    <a 
+                      href="https://t.me/franketero" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-yellow-400 hover:text-yellow-300"
+                    >
+                      <Send className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
               </div>
               <div className="grid gap-4">
@@ -331,7 +351,17 @@ function App() {
                 <BookOpen className="text-yellow-400 w-6 h-6" />
                 <div>
                   <h2 className="text-2xl text-white font-bold">Últimos Pronósticos</h2>
-                  <p className="text-sm text-gray-400">Obtén más pronósticos como estos en nuestro Grupo VIP</p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-400">Obtén más pronósticos como estos en nuestro Grupo VIP</span>
+                    <a 
+                      href="https://t.me/+Qihb06lnKeJkMGMx" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-yellow-400 hover:text-yellow-300"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                    </a>
+                  </div>
                 </div>
               </div>
               <div className="space-y-4">
@@ -349,7 +379,20 @@ function App() {
             <div className="bg-[#2c6152] p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-4">
                 <BrainCircuit className="text-yellow-400 w-6 h-6" />
-                <h2 className="text-2xl text-white font-bold">Conceptos Clave</h2>
+                <div>
+                  <h2 className="text-2xl text-white font-bold">Conceptos Clave</h2>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-400">Aprende más en nuestro Canal de Telegram</span>
+                    <a 
+                      href="https://t.me/BetWinnerVzla" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-yellow-400 hover:text-yellow-300"
+                    >
+                      <Send className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
               </div>
               <div className="space-y-4">
                 {concepts.map((concept, index) => (
