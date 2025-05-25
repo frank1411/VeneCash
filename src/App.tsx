@@ -127,14 +127,14 @@ function App() {
 
   const BookmakerDropdown = ({ show, items }) => (
     show && (
-      <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl overflow-hidden z-50">
+      <div className="absolute right-0 mt-2 w-80 bg-[#e8f5e9] rounded-lg shadow-xl overflow-hidden z-50">
         {items.map((bookmaker, index) => (
           <a
             key={index}
             href={bookmaker.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block p-4 hover:bg-gray-50 transition-colors duration-200"
+            className="block p-4 hover:bg-[#c8e6c9] transition-colors duration-200"
           >
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 flex items-center justify-center">
