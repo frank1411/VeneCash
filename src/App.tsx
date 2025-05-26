@@ -4,9 +4,10 @@ import { supabase } from './lib/supabase';
 
 interface Prediction {
   id: string;
-  match: string;
-  prediction: string;
-  confidence: number;
+  match_title: string;
+  prediction_type: string;
+  odds: number;
+  is_active: boolean;
   created_at: string;
 }
 
@@ -72,8 +73,9 @@ function App() {
     // Load predictions from Supabase
     const fetchPredictions = async () => {
       const { data, error } = await supabase
-        .from('predictions')
+        .from('pronosticos')
         .select('*')
+        .eq('is_active', true)
         .order('created_at', { ascending: false })
         .limit(3);
 
@@ -379,9 +381,9 @@ function App() {
                 {predictions.map((pred) => (
                   <Prediction 
                     key={pred.id}
-                    match={pred.match}
-                    prediction={pred.prediction}
-                    confidence={pred.confidence}
+                    match={pred.match_title}
+                    prediction={pred.prediction_type}
+                    confidence={pred.odds}
                   />
                 ))}
               </div>
