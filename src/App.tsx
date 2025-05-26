@@ -72,19 +72,61 @@ function App() {
   useEffect(() => {
     // Load predictions from Supabase
     const fetchPredictions = async () => {
-      const { data, error } = await supabase
-        .from('pronosticos')
-        .select('*')
-        .eq('is_active', true)
-        .order('created_at', { ascending: false })
-        .limit(3);
-
-      if (error) {
-        console.error('Error loading predictions:', error);
-        return;
+      console.log('🔍 Iniciando consulta a Supabase...');
+      
+      try {
+        // 1. Primero, verificar la conexión básica
+        console.log('🔌 Probando conexión con Supabase...');
+        const { data: testData, error: testError } = await supabase
+          .from('pronosticos')
+          .select('*')
+          .limit(1);
+          
+        if (testError) {
+          console.error('❌ Error de conexión con Supabase:', testError);
+          return;
+        }
+        
+        console.log('✅ Conexión exitosa con Supabase');
+        
+        // 2. Realizar la consulta principal
+        console.log('📡 Realizando consulta a pronosticos...');
+        const { data, error } = await supabase
+          .from('pronosticos')
+          .select('*')
+          .limit(3);
+          
+        console.log('📊 Resultado de la consulta:', { 
+          encontrados: data ? data.length : 0,
+          error: error ? error.message : 'Ninguno',
+          status: error ? 'Error' : 'Éxito'
+        });
+        
+        if (error) {
+          console.error('❌ Error en la consulta:', {
+            message: error.message,
+            details: error.details,
+            hint: error.hint,
+            code: error.code
+          });
+          return;
+        }
+        
+        if (!data || data.length === 0) {
+          console.warn('⚠️ No se encontraron registros en la tabla pronosticos');
+        } else {
+          console.log('📋 Primer registro:', data[0]);
+        }
+        
+        // Actualizar el estado con los datos
+        setPredictions(data || []);
+        
+      } catch (err) {
+        console.error('🔥 Error inesperado:', {
+          message: err instanceof Error ? err.message : 'Error desconocido',
+          stack: err instanceof Error ? err.stack : 'No disponible'
+        });
       }
-
-      setPredictions(data || []);
     };
 
     fetchPredictions();
@@ -386,9 +428,8 @@ function App() {
                     confidence={pred.odds}
                   />
                 ))}
-              </div>
+              </div>              
             </div>
-
             <div className="bg-[#2c6152] p-6 rounded-lg">
               <div className="flex items-center gap-3 mb-4">
                 <BrainCircuit className="text-yellow-400 w-6 h-6" />
