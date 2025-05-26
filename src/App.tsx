@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit, X, ChevronDown, Link, Copy, Check } from 'lucide-react';
+import { supabase } from './lib/supabase';
 
 function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -60,21 +61,23 @@ function App() {
   };
 
   useEffect(() => {
-    // Load predictions
-    fetch('/pronosticos.txt')
-      .then(response => response.text())
-      .then(text => {
-        const predictions = text.trim().split('\n\n').map(block => {
-          const lines = block.split('\n');
-          return {
-            match: lines[0].replace('Partido: ', ''),
-            prediction: lines[1].replace('Mercado: ', ''),
-            confidence: parseFloat(lines[2].replace('Cuota: ', ''))
-          };
-        });
-        setPredictions(predictions);
-      })
-      .catch(error => console.error('Error loading predictions:', error));
+    // Load predictions from Supabase
+    const fetchPredictions = async () => {
+      const { data, error } = await supabase
+        .from('predictions')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(3);
+
+      if (error) {
+        console.error('Error loading predictions:', error);
+        return;
+      }
+
+      setPredictions(data);
+    };
+
+    fetchPredictions();
 
     // Load concepts
     fetch('/conceptos.txt')
