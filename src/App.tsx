@@ -4,10 +4,9 @@ import { supabase } from './lib/supabase';
 
 interface Prediction {
   id: string;
-  match_title: string;
-  prediction_type: string;
-  odds: number;
-  is_active: boolean;
+  match: string;
+  prediction: string;
+  confidence: number;
   created_at: string;
 }
 
@@ -73,9 +72,8 @@ function App() {
     // Load predictions from Supabase
     const fetchPredictions = async () => {
       const { data, error } = await supabase
-        .from('pronosticos')
+        .from('predictions')  // Changed from 'pronosticos' to 'predictions'
         .select('*')
-        .eq('is_active', true)
         .order('created_at', { ascending: false })
         .limit(3);
 
@@ -84,7 +82,17 @@ function App() {
         return;
       }
 
-      setPredictions(data || []);
+      // Map the data to match the component's expected format
+      const formattedPredictions = data?.map(pred => ({
+        id: pred.id,
+        match_title: pred.match,
+        prediction_type: pred.prediction,
+        odds: pred.confidence,
+        is_active: true,
+        created_at: pred.created_at
+      })) || [];
+
+      setPredictions(formattedPredictions);
     };
 
     fetchPredictions();
