@@ -2,13 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Wallet, DollarSign, CreditCard, History, HelpCircle, BookOpen, Trophy, MessageCircle, Send, BrainCircuit, X, ChevronDown, Link, Copy, Check } from 'lucide-react';
 import { supabase } from './lib/supabase';
 
+interface Prediction {
+  id: string;
+  match: string;
+  prediction: string;
+  confidence: number;
+  created_at: string;
+}
+
 function App() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showRegisterDropdown, setShowRegisterDropdown] = useState(false);
   const [showHeroDropdown, setShowHeroDropdown] = useState(false);
   const [showCreateAccountDropdown, setShowCreateAccountDropdown] = useState(false);
   const [copiedCode, setCopiedCode] = useState('');
-  const [predictions, setPredictions] = useState([]);
+  const [predictions, setPredictions] = useState<Prediction[]>([]);
   const [concepts, setConcepts] = useState([]);
   const [resources, setResources] = useState([]);
   const [legal, setLegal] = useState([]);
@@ -74,7 +82,7 @@ function App() {
         return;
       }
 
-      setPredictions(data);
+      setPredictions(data || []);
     };
 
     fetchPredictions();
@@ -368,9 +376,9 @@ function App() {
                 </div>
               </div>
               <div className="space-y-4">
-                {predictions.map((pred, index) => (
+                {predictions.map((pred) => (
                   <Prediction 
-                    key={index}
+                    key={pred.id}
                     match={pred.match}
                     prediction={pred.prediction}
                     confidence={pred.confidence}
